@@ -1,9 +1,11 @@
 package com.alarm.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class Alarm {
@@ -15,7 +17,8 @@ public class Alarm {
     private String name;
 
     @Column(name = "time")
-    private Date time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime time;
 
     @Column(name = "enabled")
     private boolean enabled;
@@ -36,19 +39,19 @@ public class Alarm {
         this.name = name;
     }
 
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }
